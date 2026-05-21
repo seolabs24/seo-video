@@ -1,0 +1,1177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Homepage Brand Video — Full Developer Brief</title>
+<style>
+  :root {
+    --bg: #0f1117;
+    --surface: #181c27;
+    --surface2: #1e2333;
+    --border: #2a3040;
+    --accent: #4f8ef7;
+    --accent2: #36d9a0;
+    --warn: #f0a04b;
+    --danger: #e85555;
+    --text: #d4daf0;
+    --text-muted: #7a87a8;
+    --code-bg: #111520;
+    --code-border: #252e45;
+    --green: #36d9a0;
+    --yellow: #f0c84b;
+    --red: #e85555;
+    --font-mono: 'JetBrains Mono', 'Fira Code', 'Cascadia Code', monospace;
+    --font-body: 'Inter', 'Segoe UI', system-ui, sans-serif;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--font-body);
+    font-size: 15px;
+    line-height: 1.7;
+    padding: 0 0 80px;
+  }
+
+  /* ── HEADER ── */
+  .doc-header {
+    background: linear-gradient(135deg, #131929 0%, #0f1520 100%);
+    border-bottom: 1px solid var(--border);
+    padding: 48px 60px 40px;
+  }
+  .doc-header .tag {
+    display: inline-block;
+    background: rgba(79,142,247,0.12);
+    color: var(--accent);
+    border: 1px solid rgba(79,142,247,0.3);
+    border-radius: 4px;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 3px 10px;
+    margin-bottom: 16px;
+  }
+  .doc-header h1 {
+    font-size: 32px;
+    font-weight: 700;
+    color: #e8edf8;
+    letter-spacing: -0.5px;
+    margin-bottom: 10px;
+  }
+  .doc-header p {
+    color: var(--text-muted);
+    font-size: 14px;
+  }
+
+  /* ── LAYOUT ── */
+  .content {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 0 40px;
+  }
+
+  /* ── TOC ── */
+  .toc {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 28px 32px;
+    margin: 40px 0;
+  }
+  .toc h2 {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-bottom: 16px;
+  }
+  .toc ol {
+    list-style: none;
+    counter-reset: toc;
+    columns: 2;
+    column-gap: 40px;
+  }
+  .toc li {
+    counter-increment: toc;
+    padding: 4px 0;
+    font-size: 14px;
+  }
+  .toc li::before {
+    content: counter(toc, decimal-leading-zero) ". ";
+    color: var(--accent);
+    font-weight: 600;
+    font-variant-numeric: tabular-nums;
+    margin-right: 6px;
+  }
+  .toc a { color: var(--text); text-decoration: none; }
+  .toc a:hover { color: var(--accent); }
+
+  /* ── SECTIONS ── */
+  .section {
+    margin: 48px 0;
+    padding-top: 16px;
+    border-top: 1px solid var(--border);
+  }
+  .section-number {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 6px;
+  }
+  .section h2 {
+    font-size: 22px;
+    font-weight: 700;
+    color: #e8edf8;
+    margin-bottom: 16px;
+    letter-spacing: -0.3px;
+  }
+  .section h3 {
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--accent2);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin: 28px 0 12px;
+  }
+
+  p { margin-bottom: 12px; color: var(--text); }
+
+  /* ── CALLOUTS ── */
+  .callout {
+    border-radius: 6px;
+    padding: 16px 20px;
+    margin: 20px 0;
+    font-size: 14px;
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+  }
+  .callout .icon { font-size: 16px; flex-shrink: 0; margin-top: 1px; }
+  .callout.warn { background: rgba(240,160,75,0.08); border: 1px solid rgba(240,160,75,0.25); }
+  .callout.warn .icon::before { content: "⚠️"; }
+  .callout.info { background: rgba(79,142,247,0.07); border: 1px solid rgba(79,142,247,0.2); }
+  .callout.info .icon::before { content: "ℹ️"; }
+  .callout.danger { background: rgba(232,85,85,0.07); border: 1px solid rgba(232,85,85,0.22); }
+  .callout.danger .icon::before { content: "🚫"; }
+  .callout.success { background: rgba(54,217,160,0.07); border: 1px solid rgba(54,217,160,0.22); }
+  .callout.success .icon::before { content: "✅"; }
+
+  /* ── CODE BLOCKS ── */
+  .code-block {
+    background: var(--code-bg);
+    border: 1px solid var(--code-border);
+    border-radius: 8px;
+    margin: 16px 0;
+    overflow: hidden;
+  }
+  .code-block .code-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 16px;
+    background: rgba(255,255,255,0.03);
+    border-bottom: 1px solid var(--code-border);
+  }
+  .code-block .lang {
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--text-muted);
+  }
+  .code-block .filename {
+    font-size: 12px;
+    color: var(--accent);
+    font-family: var(--font-mono);
+  }
+  .code-block pre {
+    padding: 20px;
+    overflow-x: auto;
+    font-family: var(--font-mono);
+    font-size: 13px;
+    line-height: 1.65;
+    color: #c8d0e8;
+  }
+  .code-block pre .c { color: #546a8a; font-style: italic; }   /* comment */
+  .code-block pre .k { color: #79b8ff; }   /* keyword */
+  .code-block pre .s { color: #9ecbff; }   /* string */
+  .code-block pre .v { color: #b392f0; }   /* var/attr */
+  .code-block pre .n { color: #7bc9a0; }   /* number */
+  .code-block pre .t { color: #f97583; }   /* tag */
+  .code-block pre .p { color: #e1e4e8; }   /* punctuation */
+
+  /* ── TABLES ── */
+  .data-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 16px 0;
+    font-size: 13.5px;
+  }
+  .data-table th {
+    background: var(--surface2);
+    color: var(--text-muted);
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    padding: 10px 16px;
+    text-align: left;
+    border-bottom: 1px solid var(--border);
+  }
+  .data-table td {
+    padding: 10px 16px;
+    border-bottom: 1px solid rgba(42,48,64,0.6);
+    vertical-align: top;
+  }
+  .data-table tr:last-child td { border-bottom: none; }
+  .data-table code {
+    background: var(--code-bg);
+    border: 1px solid var(--code-border);
+    border-radius: 3px;
+    padding: 1px 6px;
+    font-family: var(--font-mono);
+    font-size: 12px;
+    color: #9ecbff;
+  }
+
+  /* ── BADGE ── */
+  .badge {
+    display: inline-block;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    border-radius: 3px;
+    padding: 2px 7px;
+    margin-left: 6px;
+    vertical-align: middle;
+  }
+  .badge.required { background: rgba(232,85,85,0.18); color: var(--red); border: 1px solid rgba(232,85,85,0.3); }
+  .badge.recommended { background: rgba(240,200,75,0.15); color: var(--yellow); border: 1px solid rgba(240,200,75,0.3); }
+  .badge.optional { background: rgba(120,140,170,0.15); color: var(--text-muted); border: 1px solid rgba(120,140,170,0.2); }
+
+  /* ── INLINE CODE ── */
+  code {
+    background: var(--code-bg);
+    border: 1px solid var(--code-border);
+    border-radius: 3px;
+    padding: 1px 6px;
+    font-family: var(--font-mono);
+    font-size: 12.5px;
+    color: #9ecbff;
+  }
+
+  /* ── CHECKLIST ── */
+  .checklist { list-style: none; margin: 12px 0; }
+  .checklist li {
+    padding: 6px 0 6px 28px;
+    position: relative;
+    font-size: 14px;
+    border-bottom: 1px solid rgba(42,48,64,0.4);
+  }
+  .checklist li:last-child { border-bottom: none; }
+  .checklist li::before {
+    content: "□";
+    position: absolute;
+    left: 4px;
+    color: var(--border);
+    font-size: 16px;
+  }
+
+  /* ── QA TABLE ── */
+  .qa-pass { color: var(--green); font-weight: 600; }
+  .qa-fail { color: var(--red); font-weight: 600; }
+  .qa-check { color: var(--yellow); font-weight: 600; }
+
+  /* ── FOOTER ── */
+  .doc-footer {
+    margin-top: 64px;
+    padding-top: 24px;
+    border-top: 1px solid var(--border);
+    font-size: 12px;
+    color: var(--text-muted);
+    display: flex;
+    justify-content: space-between;
+  }
+
+  ul { margin: 8px 0 12px 20px; }
+  ul li { margin-bottom: 4px; font-size: 14px; }
+
+  strong { color: #e0e6f8; font-weight: 600; }
+</style>
+</head>
+<body>
+
+<div class="doc-header">
+  <div style="max-width:960px; margin:0 auto; padding:0 40px">
+    <div class="tag">Developer Brief — Technical Specification</div>
+    <h1>Homepage Brand Video Implementation</h1>
+    <p>Full code templates, PHP snippets, and QA protocol for a muted autoplay background hero video</p>
+  </div>
+</div>
+
+<div class="content">
+
+  <!-- TOC -->
+  <div class="toc">
+    <h2>Contents</h2>
+    <ol>
+      <li><a href="#s1">Video File Preparation</a></li>
+      <li><a href="#s2">Folder & File Structure</a></li>
+      <li><a href="#s3">HTML — Video Element</a></li>
+      <li><a href="#s4">CSS — Container & Layout</a></li>
+      <li><a href="#s5">JavaScript — Responsive Source Swap</a></li>
+      <li><a href="#s6">Head Tag — Preload</a></li>
+      <li><a href="#s7">PHP Template (WordPress)</a></li>
+      <li><a href="#s8">PHP Template (Custom / Plain PHP)</a></li>
+      <li><a href="#s9">Schema — No Changes Required</a></li>
+      <li><a href="#s10">CDN & Cache Headers</a></li>
+      <li><a href="#s11">QA Checklist & DevTools Protocol</a></li>
+    </ol>
+  </div>
+
+  <!-- ─────────────────────────────────────────────── -->
+  <!-- SECTION 1 -->
+  <!-- ─────────────────────────────────────────────── -->
+  <div class="section" id="s1">
+    <div class="section-number">Section 01</div>
+    <h2>Video File Preparation</h2>
+
+    <p>Before any code is written, the video must be exported in the correct formats, resolutions, and sizes. The current 13 MB source file will cause LCP failure on mobile. All four output files listed below must be produced <em>before</em> upload.</p>
+
+    <h3>Required Output Files</h3>
+    <table class="data-table">
+      <thead>
+        <tr><th>Filename</th><th>Format</th><th>Resolution</th><th>Max Size</th><th>FPS</th><th>Audio</th></tr>
+      </thead>
+      <tbody>
+        <tr><td><code>hero-desktop.webm</code></td><td>WebM / VP9</td><td>1280×720</td><td>3 MB</td><td>24</td><td>Removed</td></tr>
+        <tr><td><code>hero-desktop.mp4</code></td><td>MP4 / H.264</td><td>1280×720</td><td>4 MB</td><td>24</td><td>Removed</td></tr>
+        <tr><td><code>hero-mobile.webm</code></td><td>WebM / VP9</td><td>854×480</td><td>1.5 MB</td><td>24</td><td>Removed</td></tr>
+        <tr><td><code>hero-mobile.mp4</code></td><td>MP4 / H.264</td><td>854×480</td><td>2 MB</td><td>24</td><td>Removed</td></tr>
+        <tr><td><code>hero-poster.webp</code></td><td>WebP</td><td>1920×1080</td><td>150 KB</td><td>—</td><td>—</td></tr>
+      </tbody>
+    </table>
+
+    <h3>FFmpeg Commands</h3>
+    <p>Use the following FFmpeg commands to produce all four video files from the original source. Replace <code>source.mov</code> with the actual filename.</p>
+
+    <div class="code-block">
+      <div class="code-header"><span class="lang">bash</span><span class="filename">terminal</span></div>
+      <pre><span class="c"># ── DESKTOP WebM (VP9) ──────────────────────────────────────</span>
+ffmpeg -i source.mov \
+  -c:v libvpx-vp9 \
+  -crf 32 \
+  -b:v 0 \
+  -vf scale=1280:720 \
+  -r 24 \
+  -an \
+  -deadline good \
+  -cpu-used 2 \
+  hero-desktop.webm
+
+<span class="c"># ── DESKTOP MP4 (H.264) ─────────────────────────────────────</span>
+ffmpeg -i source.mov \
+  -c:v libx264 \
+  -crf 26 \
+  -preset slow \
+  -vf scale=1280:720 \
+  -r 24 \
+  -an \
+  -movflags +faststart \
+  hero-desktop.mp4
+
+<span class="c"># ── MOBILE WebM (VP9) ───────────────────────────────────────</span>
+ffmpeg -i source.mov \
+  -c:v libvpx-vp9 \
+  -crf 36 \
+  -b:v 0 \
+  -vf scale=854:480 \
+  -r 24 \
+  -an \
+  -deadline good \
+  -cpu-used 2 \
+  hero-mobile.webm
+
+<span class="c"># ── MOBILE MP4 (H.264) ──────────────────────────────────────</span>
+ffmpeg -i source.mov \
+  -c:v libx264 \
+  -crf 28 \
+  -preset slow \
+  -vf scale=854:480 \
+  -r 24 \
+  -an \
+  -movflags +faststart \
+  hero-mobile.mp4
+
+<span class="c"># ── POSTER IMAGE ────────────────────────────────────────────</span>
+<span class="c"># Extract best frame (adjust 00:00:02 to the desired timestamp)</span>
+ffmpeg -i source.mov -ss 00:00:02 -vframes 1 hero-poster.png
+<span class="c"># Then convert to WebP at high quality</span>
+cwebp -q 85 -resize 1920 1080 hero-poster.png -o hero-poster.webp</pre>
+    </div>
+
+    <div class="callout warn">
+      <div class="icon"></div>
+      <div><strong>-movflags +faststart is mandatory for MP4.</strong> This moves the MP4 metadata (moov atom) to the beginning of the file so the browser can start playing before the entire file is downloaded. Without it, the browser must download 100% of the file before any playback begins.</div>
+    </div>
+
+    <div class="callout info">
+      <div class="icon"></div>
+      <div><strong>Verify output file sizes</strong> with <code>ls -lh hero-*.webm hero-*.mp4</code> before uploading. If desktop WebM exceeds 3 MB, increase CRF to 34–36 and re-encode.</div>
+    </div>
+  </div>
+
+  <!-- ─────────────────────────────────────────────── -->
+  <!-- SECTION 2 -->
+  <!-- ─────────────────────────────────────────────── -->
+  <div class="section" id="s2">
+    <div class="section-number">Section 02</div>
+    <h2>Folder &amp; File Structure</h2>
+
+    <div class="code-block">
+      <div class="code-header"><span class="lang">tree</span><span class="filename">project root</span></div>
+      <pre>/public_html/               <span class="c">(or /wp-content/themes/your-theme/ for WordPress)</span>
+│
+├── assets/
+│   ├── video/
+│   │   ├── hero-desktop.webm
+│   │   ├── hero-desktop.mp4
+│   │   ├── hero-mobile.webm
+│   │   └── hero-mobile.mp4
+│   └── images/
+│       └── hero-poster.webp
+│
+├── css/
+│   └── hero-video.css
+│
+├── js/
+│   └── hero-video.js
+│
+└── index.php  (or index.html / front-page.php for WordPress)</pre>
+    </div>
+
+    <div class="callout info">
+      <div class="icon"></div>
+      <div>If hosting videos on a CDN (Cloudflare R2, Bunny CDN, AWS S3+CloudFront), the <code>/assets/video/</code> paths in all templates below should be replaced with the CDN base URL, e.g. <code>https://cdn.yourdomain.com/video/hero-desktop.webm</code>.</div>
+    </div>
+  </div>
+
+  <!-- ─────────────────────────────────────────────── -->
+  <!-- SECTION 3 -->
+  <!-- ─────────────────────────────────────────────── -->
+  <div class="section" id="s3">
+    <div class="section-number">Section 03</div>
+    <h2>HTML — Video Element</h2>
+
+    <p>The video element is intentionally minimal. JavaScript handles responsive source selection (Section 05). The <code>data-desktop</code> and <code>data-mobile</code> attributes are custom data attributes that the JS file reads — they are not HTML5 standards and carry no risk.</p>
+
+    <div class="code-block">
+      <div class="code-header"><span class="lang">html</span><span class="filename">hero section markup</span></div>
+      <pre><span class="c">&lt;!-- ─── HERO SECTION ───────────────────────────────────── --&gt;</span>
+&lt;<span class="t">section</span> <span class="v">class</span>=<span class="s">"hero"</span> <span class="v">aria-label</span>=<span class="s">"[Your Salon Name] — Brand Introduction"</span>&gt;
+
+  <span class="c">&lt;!-- Video wrapper: reserves 16:9 space before video loads --&gt;</span>
+  &lt;<span class="t">div</span> <span class="v">class</span>=<span class="s">"hero__video-wrapper"</span>&gt;
+
+    &lt;<span class="t">video</span>
+      <span class="v">class</span>=<span class="s">"hero__video"</span>
+      <span class="v">autoplay</span>
+      <span class="v">muted</span>
+      <span class="v">loop</span>
+      <span class="v">playsinline</span>
+      <span class="v">width</span>=<span class="s">"1280"</span>
+      <span class="v">height</span>=<span class="s">"720"</span>
+      <span class="v">poster</span>=<span class="s">"/assets/images/hero-poster.webp"</span>
+      <span class="v">aria-hidden</span>=<span class="s">"true"</span>
+      <span class="v">data-desktop-webm</span>=<span class="s">"/assets/video/hero-desktop.webm"</span>
+      <span class="v">data-desktop-mp4</span>=<span class="s">"/assets/video/hero-desktop.mp4"</span>
+      <span class="v">data-mobile-webm</span>=<span class="s">"/assets/video/hero-mobile.webm"</span>
+      <span class="v">data-mobile-mp4</span>=<span class="s">"/assets/video/hero-mobile.mp4"</span>
+    &gt;
+      <span class="c">&lt;!-- Sources injected by hero-video.js on DOMContentLoaded --&gt;</span>
+    &lt;/<span class="t">video</span>&gt;
+
+  &lt;/<span class="t">div</span>&gt;
+
+  <span class="c">&lt;!-- Hero content: sits above the video via z-index --&gt;</span>
+  &lt;<span class="t">div</span> <span class="v">class</span>=<span class="s">"hero__content"</span>&gt;
+    &lt;<span class="t">h1</span> <span class="v">class</span>=<span class="s">"hero__title"</span>&gt;[Your Salon Name] — Massage &amp;amp; Wellness in [City]&lt;/<span class="t">h1</span>&gt;
+    &lt;<span class="t">p</span> <span class="v">class</span>=<span class="s">"hero__subtitle"</span>&gt;A short brand statement. One to two sentences.&lt;/<span class="t">p</span>&gt;
+    &lt;<span class="t">a</span> <span class="v">href</span>=<span class="s">"/book"</span> <span class="v">class</span>=<span class="s">"hero__cta"</span>&gt;Book a Treatment&lt;/<span class="t">a</span>&gt;
+  &lt;/<span class="t">div</span>&gt;
+
+&lt;/<span class="t">section</span>&gt;</pre>
+    </div>
+
+    <h3>Attribute Reference</h3>
+    <table class="data-table">
+      <thead><tr><th>Attribute</th><th>Value</th><th>Why it is required</th></tr></thead>
+      <tbody>
+        <tr><td><code>autoplay</code></td><td>boolean</td><td>Starts playback immediately. Requires <code>muted</code> or browsers block it.</td></tr>
+        <tr><td><code>muted</code></td><td>boolean</td><td>Required for autoplay in all browsers. Without it, Chrome, Safari, and Firefox block autoplay.</td></tr>
+        <tr><td><code>loop</code></td><td>boolean</td><td>Restarts video when it ends. Required for a continuous brand atmosphere loop.</td></tr>
+        <tr><td><code>playsinline</code></td><td>boolean</td><td>Required on iOS Safari. Without it, iPhone forces fullscreen playback.</td></tr>
+        <tr><td><code>width / height</code></td><td>1280 / 720</td><td>Reserves space in the layout before the video loads. Prevents CLS (Cumulative Layout Shift).</td></tr>
+        <tr><td><code>poster</code></td><td>/assets/images/hero-poster.webp</td><td>Static image shown instantly on load. This is your LCP element — it must load fast.</td></tr>
+        <tr><td><code>aria-hidden</code></td><td>"true"</td><td>Hides decorative video from screen readers. The video carries no information — the H1 does.</td></tr>
+        <tr><td><code>data-*</code></td><td>file paths</td><td>Custom attributes read by hero-video.js to inject the correct source per device.</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- ─────────────────────────────────────────────── -->
+  <!-- SECTION 4 -->
+  <!-- ─────────────────────────────────────────────── -->
+  <div class="section" id="s4">
+    <div class="section-number">Section 04</div>
+    <h2>CSS — Container &amp; Layout</h2>
+
+    <div class="code-block">
+      <div class="code-header"><span class="lang">css</span><span class="filename">hero-video.css</span></div>
+      <pre><span class="c">/* ─── HERO SECTION ──────────────────────────────────────── */</span>
+.hero {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  <span class="c">/* Adjust min-height to control how tall the hero appears */</span>
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+<span class="c">/* ─── VIDEO WRAPPER ─────────────────────────────────────── */</span>
+<span class="c">/* Reserves exact 16:9 space BEFORE the video loads.        */</span>
+<span class="c">/* This is what prevents CLS (layout shift).                */</span>
+.hero__video-wrapper {
+  position: absolute;
+  inset: 0;                   <span class="c">/* shorthand for top/right/bottom/left: 0 */</span>
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background-color: #1a1210;  <span class="c">/* fallback colour — match the dominant video tone */</span>
+}
+
+<span class="c">/* ─── VIDEO ELEMENT ─────────────────────────────────────── */</span>
+.hero__video {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  min-width: 100%;
+  min-height: 100%;
+  width: auto;
+  height: auto;
+  object-fit: cover;           <span class="c">/* fills the wrapper without stretching */</span>
+  aspect-ratio: 16 / 9;        <span class="c">/* belt-and-braces CLS guard */</span>
+}
+
+<span class="c">/* ─── OVERLAY ───────────────────────────────────────────── */</span>
+<span class="c">/* Dark gradient overlay — improves H1/CTA legibility.      */</span>
+.hero__video-wrapper::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0.35) 0%,
+    rgba(0, 0, 0, 0.20) 50%,
+    rgba(0, 0, 0, 0.55) 100%
+  );
+  pointer-events: none;
+}
+
+<span class="c">/* ─── HERO CONTENT ──────────────────────────────────────── */</span>
+.hero__content {
+  position: relative;
+  z-index: 10;                <span class="c">/* sits above the video and overlay */</span>
+  text-align: center;
+  padding: 40px 24px;
+  max-width: 720px;
+  color: #ffffff;
+}
+
+.hero__title {
+  font-size: clamp(28px, 5vw, 52px);
+  font-weight: 700;
+  line-height: 1.15;
+  margin-bottom: 16px;
+  text-shadow: 0 2px 12px rgba(0, 0, 0, 0.4);
+}
+
+.hero__subtitle {
+  font-size: clamp(15px, 2vw, 19px);
+  opacity: 0.88;
+  margin-bottom: 32px;
+  line-height: 1.6;
+}
+
+.hero__cta {
+  display: inline-block;
+  background: #ffffff;
+  color: #1a1210;
+  font-weight: 700;
+  font-size: 15px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  text-decoration: none;
+  padding: 16px 40px;
+  border-radius: 4px;
+  transition: background 0.2s, transform 0.15s;
+}
+
+.hero__cta:hover {
+  background: #f0ede8;
+  transform: translateY(-1px);
+}
+
+<span class="c">/* ─── MOBILE ADJUSTMENTS ────────────────────────────────── */</span>
+@media (max-width: 768px) {
+  .hero {
+    min-height: 70vh;
+  }
+  .hero__cta {
+    padding: 14px 32px;
+    font-size: 14px;
+  }
+}
+
+<span class="c">/* ─── REDUCED MOTION ────────────────────────────────────── */</span>
+<span class="c">/* Respects users who have opted out of motion in OS settings */</span>
+@media (prefers-reduced-motion: reduce) {
+  .hero__video {
+    display: none;
+  }
+}</pre>
+    </div>
+
+    <div class="callout info">
+      <div class="icon"></div>
+      <div>The <code>prefers-reduced-motion</code> media query at the bottom is a WCAG 2.1 compliance requirement. When a user has set "Reduce Motion" in their OS accessibility settings, the video is hidden and only the poster image shows. This is best practice for any autoplay animation.</div>
+    </div>
+  </div>
+
+  <!-- ─────────────────────────────────────────────── -->
+  <!-- SECTION 5 -->
+  <!-- ─────────────────────────────────────────────── -->
+  <div class="section" id="s5">
+    <div class="section-number">Section 05</div>
+    <h2>JavaScript — Responsive Source Swap</h2>
+
+    <p>This script reads the video element's <code>data-*</code> attributes and injects the correct <code>&lt;source&gt;</code> tags based on screen width. It runs on <code>DOMContentLoaded</code> so the poster image has already started loading by the time the script executes.</p>
+
+    <div class="code-block">
+      <div class="code-header"><span class="lang">javascript</span><span class="filename">hero-video.js</span></div>
+      <pre><span class="c">/**
+ * Hero Video — Responsive Source Swap
+ *
+ * Selects desktop or mobile video files based on viewport width.
+ * Also handles orientation change and iOS Low Power Mode fallback.
+ *
+ * Breakpoint: 768px (adjustable via MOBILE_BREAKPOINT)
+ */</span>
+
+(<span class="k">function</span> () {
+  <span class="s">'use strict'</span>;
+
+  <span class="k">const</span> MOBILE_BREAKPOINT = <span class="n">768</span>; <span class="c">// px — adjust to match your CSS breakpoint</span>
+
+  <span class="k">function</span> <span class="v">isMobile</span>() {
+    <span class="k">return</span> window.innerWidth <= MOBILE_BREAKPOINT;
+  }
+
+  <span class="k">function</span> <span class="v">injectSources</span>(video, mobile) {
+    <span class="c">// Clear any previously injected sources</span>
+    video.innerHTML = <span class="s">''</span>;
+
+    <span class="k">const</span> webmSrc = mobile
+      ? video.dataset.mobileWebm
+      : video.dataset.desktopWebm;
+
+    <span class="k">const</span> mp4Src = mobile
+      ? video.dataset.mobileMp4
+      : video.dataset.desktopMp4;
+
+    <span class="c">// WebM first — smaller file, modern browsers pick this</span>
+    <span class="k">if</span> (webmSrc) {
+      <span class="k">const</span> webm = document.createElement(<span class="s">'source'</span>);
+      webm.src = webmSrc;
+      webm.type = <span class="s">'video/webm'</span>;
+      video.appendChild(webm);
+    }
+
+    <span class="c">// MP4 second — universal fallback (Safari, older browsers)</span>
+    <span class="k">if</span> (mp4Src) {
+      <span class="k">const</span> mp4 = document.createElement(<span class="s">'source'</span>);
+      mp4.src = mp4Src;
+      mp4.type = <span class="s">'video/mp4'</span>;
+      video.appendChild(mp4);
+    }
+
+    <span class="c">// Tell the browser to reload with the new sources</span>
+    video.load();
+  }
+
+  <span class="k">function</span> <span class="v">initHeroVideo</span>() {
+    <span class="k">const</span> video = document.querySelector(<span class="s">'.hero__video'</span>);
+    <span class="k">if</span> (!video) <span class="k">return</span>; <span class="c">// exit silently if no hero video on this page</span>
+
+    <span class="k">const</span> mobile = isMobile();
+    injectSources(video, mobile);
+
+    <span class="c">// Explicit play() — belt-and-braces for autoplay policy edge cases</span>
+    <span class="k">const</span> playPromise = video.play();
+    <span class="k">if</span> (playPromise !== undefined) {
+      playPromise.catch(<span class="k">function</span> (err) {
+        <span class="c">// Autoplay blocked (iOS Low Power Mode, data-saver mode, etc.)</span>
+        <span class="c">// Poster image remains visible — this is the correct fallback.</span>
+        console.info(<span class="s">'Hero video autoplay blocked. Poster shown.'</span>, err.message);
+      });
+    }
+
+    <span class="c">// Handle orientation change on mobile</span>
+    <span class="c">// Re-evaluate breakpoint after rotation settles (300ms debounce)</span>
+    <span class="k">let</span> resizeTimer;
+    window.addEventListener(<span class="s">'resize'</span>, <span class="k">function</span> () {
+      clearTimeout(resizeTimer);
+      resizeTimer = setTimeout(<span class="k">function</span> () {
+        <span class="k">const</span> nowMobile = isMobile();
+        <span class="k">if</span> (nowMobile !== mobile) {
+          <span class="c">// Device has crossed the breakpoint — swap sources</span>
+          injectSources(video, nowMobile);
+        }
+      }, <span class="n">300</span>);
+    });
+  }
+
+  <span class="c">// Run after DOM is ready</span>
+  <span class="k">if</span> (document.readyState === <span class="s">'loading'</span>) {
+    document.addEventListener(<span class="s">'DOMContentLoaded'</span>, initHeroVideo);
+  } <span class="k">else</span> {
+    initHeroVideo(); <span class="c">// DOM already loaded (deferred script)</span>
+  }
+
+})();</pre>
+    </div>
+
+    <div class="callout warn">
+      <div class="icon"></div>
+      <div>Load this script with <code>defer</code> — never with <code>async</code> alone. <code>defer</code> guarantees the DOM is ready when the script runs, and it does not block the poster image from rendering. Example: <code>&lt;script src="/js/hero-video.js" defer&gt;&lt;/script&gt;</code></div>
+    </div>
+  </div>
+
+  <!-- ─────────────────────────────────────────────── -->
+  <!-- SECTION 6 -->
+  <!-- ─────────────────────────────────────────────── -->
+  <div class="section" id="s6">
+    <div class="section-number">Section 06</div>
+    <h2>Head Tag — Preload</h2>
+
+    <p>The preload hint must appear in the <code>&lt;head&gt;</code> <strong>before any stylesheet</strong>. This signals to the browser to begin fetching the poster image at the highest possible priority — making it your LCP element rather than the video itself.</p>
+
+    <div class="code-block">
+      <div class="code-header"><span class="lang">html</span><span class="filename">&lt;head&gt; — insert before stylesheets</span></div>
+      <pre>&lt;<span class="t">head</span>&gt;
+  &lt;<span class="t">meta</span> <span class="v">charset</span>=<span class="s">"UTF-8"</span>&gt;
+  &lt;<span class="t">meta</span> <span class="v">name</span>=<span class="s">"viewport"</span> <span class="v">content</span>=<span class="s">"width=device-width, initial-scale=1.0"</span>&gt;
+  &lt;<span class="t">title</span>&gt;Page Title&lt;/<span class="t">title</span>&gt;
+
+  <span class="c">&lt;!-- ✅ POSTER PRELOAD: must be first, before any CSS --&gt;</span>
+  &lt;<span class="t">link</span>
+    <span class="v">rel</span>=<span class="s">"preload"</span>
+    <span class="v">as</span>=<span class="s">"image"</span>
+    <span class="v">href</span>=<span class="s">"/assets/images/hero-poster.webp"</span>
+    <span class="v">type</span>=<span class="s">"image/webp"</span>
+    <span class="v">fetchpriority</span>=<span class="s">"high"</span>
+  &gt;
+
+  <span class="c">&lt;!-- Stylesheets follow after --&gt;</span>
+  &lt;<span class="t">link</span> <span class="v">rel</span>=<span class="s">"stylesheet"</span> <span class="v">href</span>=<span class="s">"/css/hero-video.css"</span>&gt;
+  &lt;<span class="t">link</span> <span class="v">rel</span>=<span class="s">"stylesheet"</span> <span class="v">href</span>=<span class="s">"/css/main.css"</span>&gt;
+
+  <span class="c">&lt;!-- Script loaded with defer — does not block render --&gt;</span>
+  &lt;<span class="t">script</span> <span class="v">src</span>=<span class="s">"/js/hero-video.js"</span> <span class="v">defer</span>&gt;&lt;/<span class="t">script</span>&gt;
+
+&lt;/<span class="t">head</span>&gt;</pre>
+    </div>
+  </div>
+
+  <!-- ─────────────────────────────────────────────── -->
+  <!-- SECTION 7 -->
+  <!-- ─────────────────────────────────────────────── -->
+  <div class="section" id="s7">
+    <div class="section-number">Section 07</div>
+    <h2>PHP Template — WordPress</h2>
+
+    <p>For WordPress sites, the preload link must be added via <code>wp_head</code> action, and the video HTML goes in the theme's <code>front-page.php</code> or the relevant template file. Never hardcode the preload directly in <code>header.php</code> — use the hook so child themes can override it.</p>
+
+    <h3>functions.php — Preload Hook</h3>
+    <div class="code-block">
+      <div class="code-header"><span class="lang">php</span><span class="filename">functions.php</span></div>
+      <pre><span class="k">&lt;?php</span>
+
+<span class="c">/**
+ * Add hero poster image preload to &lt;head&gt;.
+ * Only fires on the front page to avoid loading it everywhere.
+ */</span>
+<span class="k">function</span> <span class="v">salon_preload_hero_poster</span>() {
+    <span class="k">if</span> ( !is_front_page() ) {
+        <span class="k">return</span>;
+    }
+    <span class="k">$poster_url</span> = get_template_directory_uri() . <span class="s">'/assets/images/hero-poster.webp'</span>;
+    <span class="k">echo</span> <span class="s">'&lt;link rel="preload" as="image" href="'</span> . esc_url( <span class="k">$poster_url</span> ) . <span class="s">'" type="image/webp" fetchpriority="high"&gt;'</span> . <span class="s">"\n"</span>;
+}
+add_action( <span class="s">'wp_head'</span>, <span class="s">'salon_preload_hero_poster'</span>, <span class="n">1</span> ); <span class="c">// priority 1 = before everything else</span>
+
+
+<span class="c">/**
+ * Enqueue hero video CSS and JS.
+ * JS is loaded with defer via wp_enqueue_script().
+ */</span>
+<span class="k">function</span> <span class="v">salon_enqueue_hero_assets</span>() {
+    <span class="k">if</span> ( !is_front_page() ) {
+        <span class="k">return</span>;
+    }
+    wp_enqueue_style(
+        <span class="s">'salon-hero-video'</span>,
+        get_template_directory_uri() . <span class="s">'/css/hero-video.css'</span>,
+        [],
+        <span class="s">'1.0.0'</span>
+    );
+    wp_enqueue_script(
+        <span class="s">'salon-hero-video'</span>,
+        get_template_directory_uri() . <span class="s">'/js/hero-video.js'</span>,
+        [],          <span class="c">// no dependencies</span>
+        <span class="s">'1.0.0'</span>,
+        [ <span class="s">'strategy'</span> => <span class="s">'defer'</span>, <span class="s">'in_footer'</span> => <span class="k">false</span> ]
+    );
+}
+add_action( <span class="s">'wp_enqueue_scripts'</span>, <span class="s">'salon_enqueue_hero_assets'</span> );</pre>
+    </div>
+
+    <h3>front-page.php — Hero Template</h3>
+    <div class="code-block">
+      <div class="code-header"><span class="lang">php</span><span class="filename">front-page.php</span></div>
+      <pre><span class="k">&lt;?php</span>
+<span class="c">/**
+ * Front page template — includes hero video section.
+ */</span>
+get_header();
+
+<span class="c">// Build video file URLs from theme directory</span>
+<span class="k">$video_base</span>    = get_template_directory_uri() . <span class="s">'/assets/video/'</span>;
+<span class="k">$image_base</span>    = get_template_directory_uri() . <span class="s">'/assets/images/'</span>;
+
+<span class="k">$desktop_webm</span>  = <span class="k">$video_base</span> . <span class="s">'hero-desktop.webm'</span>;
+<span class="k">$desktop_mp4</span>   = <span class="k">$video_base</span> . <span class="s">'hero-desktop.mp4'</span>;
+<span class="k">$mobile_webm</span>   = <span class="k">$video_base</span> . <span class="s">'hero-mobile.webm'</span>;
+<span class="k">$mobile_mp4</span>    = <span class="k">$video_base</span> . <span class="s">'hero-mobile.mp4'</span>;
+<span class="k">$poster</span>        = <span class="k">$image_base</span> . <span class="s">'hero-poster.webp'</span>;
+<span class="k">?&gt;</span>
+
+&lt;<span class="t">section</span> <span class="v">class</span>=<span class="s">"hero"</span> <span class="v">aria-label</span>=<span class="s">"&lt;?php echo esc_attr( get_bloginfo( 'name' ) ); ?&gt; — Brand Introduction"</span>&gt;
+
+  &lt;<span class="t">div</span> <span class="v">class</span>=<span class="s">"hero__video-wrapper"</span>&gt;
+    &lt;<span class="t">video</span>
+      <span class="v">class</span>=<span class="s">"hero__video"</span>
+      <span class="v">autoplay</span>
+      <span class="v">muted</span>
+      <span class="v">loop</span>
+      <span class="v">playsinline</span>
+      <span class="v">width</span>=<span class="s">"1280"</span>
+      <span class="v">height</span>=<span class="s">"720"</span>
+      <span class="v">poster</span>=<span class="s">"&lt;?php echo esc_url( $poster ); ?&gt;"</span>
+      <span class="v">aria-hidden</span>=<span class="s">"true"</span>
+      <span class="v">data-desktop-webm</span>=<span class="s">"&lt;?php echo esc_url( $desktop_webm ); ?&gt;"</span>
+      <span class="v">data-desktop-mp4</span>=<span class="s">"&lt;?php echo esc_url( $desktop_mp4 ); ?&gt;"</span>
+      <span class="v">data-mobile-webm</span>=<span class="s">"&lt;?php echo esc_url( $mobile_webm ); ?&gt;"</span>
+      <span class="v">data-mobile-mp4</span>=<span class="s">"&lt;?php echo esc_url( $mobile_mp4 ); ?&gt;"</span>
+    &gt;
+    &lt;/<span class="t">video</span>&gt;
+  &lt;/<span class="t">div</span>&gt;
+
+  &lt;<span class="t">div</span> <span class="v">class</span>=<span class="s">"hero__content"</span>&gt;
+    &lt;<span class="t">h1</span> <span class="v">class</span>=<span class="s">"hero__title"</span>&gt;
+      &lt;<span class="k"><?php</span> echo esc_html( get_bloginfo( <span class="s">'name'</span> ) ); <span class="k">?&gt;</span>&gt; — Massage &amp;amp; Wellness
+    &lt;/<span class="t">h1</span>&gt;
+    &lt;<span class="t">p</span> <span class="v">class</span>=<span class="s">"hero__subtitle"</span>&gt;
+      &lt;<span class="k"><?php</span> echo esc_html( get_bloginfo( <span class="s">'description'</span> ) ); <span class="k">?&gt;</span>&gt;
+    &lt;/<span class="t">p</span>&gt;
+    &lt;<span class="t">a</span> <span class="v">href</span>=<span class="s">"&lt;?php echo esc_url( home_url( '/book' ) ); ?&gt;"</span> <span class="v">class</span>=<span class="s">"hero__cta"</span>&gt;
+      Book a Treatment
+    &lt;/<span class="t">a</span>&gt;
+  &lt;/<span class="t">div</span>&gt;
+
+&lt;/<span class="t">section</span>&gt;
+
+<span class="k">&lt;?php</span>
+<span class="c">// Continue with rest of front page sections...</span>
+get_footer();</pre>
+    </div>
+
+    <div class="callout info">
+      <div class="icon"></div>
+      <div>If using a <strong>CDN for video files</strong> (Cloudflare R2, Bunny CDN, AWS CloudFront), replace <code>get_template_directory_uri() . '/assets/video/'</code> with the CDN base URL. You can define it as a constant in <code>wp-config.php</code>: <code>define('VIDEO_CDN_URL', 'https://cdn.yourdomain.com/video/');</code> and then use <code>VIDEO_CDN_URL . 'hero-desktop.webm'</code>.</div>
+    </div>
+  </div>
+
+  <!-- ─────────────────────────────────────────────── -->
+  <!-- SECTION 8 -->
+  <!-- ─────────────────────────────────────────────── -->
+  <div class="section" id="s8">
+    <div class="section-number">Section 08</div>
+    <h2>PHP Template — Custom / Plain PHP</h2>
+
+    <p>For non-WordPress PHP sites, the pattern is the same but without WP helpers. All paths are resolved relative to the document root using a base URL constant.</p>
+
+    <div class="code-block">
+      <div class="code-header"><span class="lang">php</span><span class="filename">config.php — define base URLs once</span></div>
+      <pre><span class="k">&lt;?php</span>
+<span class="c">// config.php — include this at the top of every page</span>
+
+<span class="k">define</span>(<span class="s">'SITE_URL'</span>,      <span class="s">'https://yourdomain.com'</span>);
+<span class="k">define</span>(<span class="s">'VIDEO_CDN_URL'</span>, <span class="s">'https://cdn.yourdomain.com/video/'</span>);  <span class="c">// or SITE_URL . '/assets/video/'</span>
+<span class="k">define</span>(<span class="s">'IMG_CDN_URL'</span>,   <span class="s">'https://cdn.yourdomain.com/images/'</span>); <span class="c">// or SITE_URL . '/assets/images/'</span></pre>
+    </div>
+
+    <div class="code-block">
+      <div class="code-header"><span class="lang">php</span><span class="filename">index.php — full page template</span></div>
+      <pre><span class="k">&lt;?php</span>
+require_once __DIR__ . <span class="s">'/config.php'</span>;
+
+<span class="k">$desktop_webm</span> = VIDEO_CDN_URL . <span class="s">'hero-desktop.webm'</span>;
+<span class="k">$desktop_mp4</span>  = VIDEO_CDN_URL . <span class="s">'hero-desktop.mp4'</span>;
+<span class="k">$mobile_webm</span>  = VIDEO_CDN_URL . <span class="s">'hero-mobile.webm'</span>;
+<span class="k">$mobile_mp4</span>   = VIDEO_CDN_URL . <span class="s">'hero-mobile.mp4'</span>;
+<span class="k">$poster</span>       = IMG_CDN_URL   . <span class="s">'hero-poster.webp'</span>;
+<span class="k">?&gt;</span>
+&lt;!DOCTYPE html&gt;
+&lt;<span class="t">html</span> <span class="v">lang</span>=<span class="s">"en"</span>&gt;
+&lt;<span class="t">head</span>&gt;
+  &lt;<span class="t">meta</span> <span class="v">charset</span>=<span class="s">"UTF-8"</span>&gt;
+  &lt;<span class="t">meta</span> <span class="v">name</span>=<span class="s">"viewport"</span> <span class="v">content</span>=<span class="s">"width=device-width, initial-scale=1.0"</span>&gt;
+  &lt;<span class="t">title</span>&gt;[Salon Name] — Massage &amp;amp; Wellness in [City]&lt;/<span class="t">title</span>&gt;
+
+  <span class="c">&lt;!-- POSTER PRELOAD: first tag in head --&gt;</span>
+  &lt;<span class="t">link</span>
+    <span class="v">rel</span>=<span class="s">"preload"</span>
+    <span class="v">as</span>=<span class="s">"image"</span>
+    <span class="v">href</span>=<span class="s">"&lt;?= htmlspecialchars($poster) ?&gt;"</span>
+    <span class="v">type</span>=<span class="s">"image/webp"</span>
+    <span class="v">fetchpriority</span>=<span class="s">"high"</span>
+  &gt;
+
+  &lt;<span class="t">link</span> <span class="v">rel</span>=<span class="s">"stylesheet"</span> <span class="v">href</span>=<span class="s">"/css/hero-video.css"</span>&gt;
+  &lt;<span class="t">link</span> <span class="v">rel</span>=<span class="s">"stylesheet"</span> <span class="v">href</span>=<span class="s">"/css/main.css"</span>&gt;
+  &lt;<span class="t">script</span> <span class="v">src</span>=<span class="s">"/js/hero-video.js"</span> <span class="v">defer</span>&gt;&lt;/<span class="t">script</span>&gt;
+&lt;/<span class="t">head</span>&gt;
+&lt;<span class="t">body</span>&gt;
+
+&lt;<span class="t">section</span> <span class="v">class</span>=<span class="s">"hero"</span> <span class="v">aria-label</span>=<span class="s">"[Salon Name] Brand Introduction"</span>&gt;
+
+  &lt;<span class="t">div</span> <span class="v">class</span>=<span class="s">"hero__video-wrapper"</span>&gt;
+    &lt;<span class="t">video</span>
+      <span class="v">class</span>=<span class="s">"hero__video"</span>
+      <span class="v">autoplay</span> <span class="v">muted</span> <span class="v">loop</span> <span class="v">playsinline</span>
+      <span class="v">width</span>=<span class="s">"1280"</span> <span class="v">height</span>=<span class="s">"720"</span>
+      <span class="v">poster</span>=<span class="s">"&lt;?= htmlspecialchars($poster) ?&gt;"</span>
+      <span class="v">aria-hidden</span>=<span class="s">"true"</span>
+      <span class="v">data-desktop-webm</span>=<span class="s">"&lt;?= htmlspecialchars($desktop_webm) ?&gt;"</span>
+      <span class="v">data-desktop-mp4</span>=<span class="s">"&lt;?= htmlspecialchars($desktop_mp4) ?&gt;"</span>
+      <span class="v">data-mobile-webm</span>=<span class="s">"&lt;?= htmlspecialchars($mobile_webm) ?&gt;"</span>
+      <span class="v">data-mobile-mp4</span>=<span class="s">"&lt;?= htmlspecialchars($mobile_mp4) ?&gt;"</span>
+    &gt;&lt;/<span class="t">video</span>&gt;
+  &lt;/<span class="t">div</span>&gt;
+
+  &lt;<span class="t">div</span> <span class="v">class</span>=<span class="s">"hero__content"</span>&gt;
+    &lt;<span class="t">h1</span> <span class="v">class</span>=<span class="s">"hero__title"</span>&gt;[Salon Name] — Massage &amp;amp; Wellness in [City]&lt;/<span class="t">h1</span>&gt;
+    &lt;<span class="t">p</span>  <span class="v">class</span>=<span class="s">"hero__subtitle"</span>&gt;Your brand statement in one or two sentences.&lt;/<span class="t">p</span>&gt;
+    &lt;<span class="t">a</span>  <span class="v">href</span>=<span class="s">"/book"</span> <span class="v">class</span>=<span class="s">"hero__cta"</span>&gt;Book a Treatment&lt;/<span class="t">a</span>&gt;
+  &lt;/<span class="t">div</span>&gt;
+
+&lt;/<span class="t">section</span>&gt;
+
+<span class="c">&lt;!-- rest of page content --&gt;</span>
+
+&lt;/<span class="t">body</span>&gt;
+&lt;/<span class="t">html</span>&gt;</pre>
+    </div>
+  </div>
+
+  <!-- ─────────────────────────────────────────────── -->
+  <!-- SECTION 9 -->
+  <!-- ─────────────────────────────────────────────── -->
+  <div class="section" id="s9">
+    <div class="section-number">Section 09</div>
+    <h2>Schema — No Changes Required</h2>
+
+    <div class="callout success">
+      <div class="icon"></div>
+      <div><strong>No VideoObject schema is needed.</strong> The existing LocalBusiness + Organization schema is correct and complete. Adding VideoObject to a decorative background video would violate Google's structured data guidelines, which require schema to accurately represent content the user can interact with.</div>
+    </div>
+
+    <p>Google's Search Central documentation states: <em>"VideoObject structured data must be added to a page where users can watch the video."</em> A muted, looping, controlless background video does not qualify as a watch page. Do not add VideoObject schema.</p>
+
+    <p>Confirm the existing LocalBusiness schema includes at minimum: <code>name</code>, <code>address</code>, <code>telephone</code>, <code>url</code>, <code>openingHoursSpecification</code>, and <code>image</code>. No further schema additions are required for this video implementation.</p>
+  </div>
+
+  <!-- ─────────────────────────────────────────────── -->
+  <!-- SECTION 10 -->
+  <!-- ─────────────────────────────────────────────── -->
+  <div class="section" id="s10">
+    <div class="section-number">Section 10</div>
+    <h2>CDN &amp; Cache Headers</h2>
+
+    <p>Video files must be served with long-cache headers. Since filenames include a content hash, the URL changes when the file changes — so a 1-year cache is safe.</p>
+
+    <h3>Nginx Configuration</h3>
+    <div class="code-block">
+      <div class="code-header"><span class="lang">nginx</span><span class="filename">nginx.conf or site config</span></div>
+      <pre><span class="c"># Video and image assets — 1 year cache</span>
+location ~* \.(webm|mp4|webp)$ {
+    expires 1y;
+    add_header Cache-Control "public, max-age=31536000, immutable";
+    add_header Accept-Ranges bytes;   <span class="c"># enables range requests for partial video loading</span>
+    gzip off;                          <span class="c"># never gzip binary video files — wastes CPU</span>
+}
+
+<span class="c"># Correct MIME types (in case not set by default)</span>
+types {
+    video/webm   webm;
+    video/mp4    mp4;
+    image/webp   webp;
+}</pre>
+    </div>
+
+    <h3>Apache .htaccess</h3>
+    <div class="code-block">
+      <div class="code-header"><span class="lang">apache</span><span class="filename">.htaccess</span></div>
+      <pre>&lt;IfModule mod_expires.c&gt;
+  ExpiresActive On
+  ExpiresByType video/webm  "access plus 1 year"
+  ExpiresByType video/mp4   "access plus 1 year"
+  ExpiresByType image/webp  "access plus 1 year"
+&lt;/IfModule&gt;
+
+&lt;IfModule mod_headers.c&gt;
+  &lt;FilesMatch "\.(webm|mp4|webp)$"&gt;
+    Header set Cache-Control "public, max-age=31536000, immutable"
+    Header set Accept-Ranges "bytes"
+  &lt;/FilesMatch&gt;
+&lt;/IfModule&gt;
+
+<span class="c"># Correct MIME types for video</span>
+AddType video/webm .webm
+AddType video/mp4  .mp4
+AddType image/webp .webp</pre>
+    </div>
+
+    <div class="callout warn">
+      <div class="icon"></div>
+      <div><strong>Accept-Ranges: bytes</strong> is required for video. Without it, browsers cannot make partial HTTP range requests, which means the entire video must download before playback begins. Nginx serves this by default; Apache requires the header to be set explicitly.</div>
+    </div>
+  </div>
+
+  <!-- ─────────────────────────────────────────────── -->
+  <!-- SECTION 11 -->
+  <!-- ─────────────────────────────────────────────── -->
+  <div class="section" id="s11">
+    <div class="section-number">Section 11</div>
+    <h2>QA Checklist &amp; DevTools Protocol</h2>
+
+    <h3>Pre-Launch Checklist</h3>
+    <ul class="checklist">
+      <li>All 4 video files exported (desktop.webm, desktop.mp4, mobile.webm, mobile.mp4)</li>
+      <li>hero-poster.webp exported at ~150 KB</li>
+      <li>Desktop WebM is under 3 MB — verified with <code>ls -lh</code></li>
+      <li>Mobile WebM is under 1.5 MB — verified with <code>ls -lh</code></li>
+      <li>MP4 files include <code>-movflags +faststart</code> — verify with <code>ffprobe hero-desktop.mp4</code></li>
+      <li>All files uploaded to CDN and accessible at expected public URLs</li>
+      <li>Poster preload tag is the first <code>&lt;link&gt;</code> in <code>&lt;head&gt;</code></li>
+      <li>JavaScript file loads with <code>defer</code></li>
+      <li>Video element has <code>width</code>, <code>height</code>, <code>poster</code>, <code>aria-hidden</code></li>
+      <li>H1 and CTA are in HTML — not inside the video</li>
+      <li>Cache headers returning correctly — check with <code>curl -I https://cdn.yourdomain.com/video/hero-desktop.webm</code></li>
+      <li>No VideoObject schema added</li>
+    </ul>
+
+    <h3>PageSpeed Insights — Pass Thresholds</h3>
+    <table class="data-table">
+      <thead><tr><th>Metric</th><th>Target</th><th>Fail if</th></tr></thead>
+      <tbody>
+        <tr><td>LCP (mobile)</td><td class="qa-pass">&lt; 2.5 s</td><td class="qa-fail">&gt; 4.0 s</td></tr>
+        <tr><td>CLS</td><td class="qa-pass">&lt; 0.1</td><td class="qa-fail">&gt; 0.25</td></tr>
+        <tr><td>INP</td><td class="qa-pass">&lt; 200 ms</td><td class="qa-fail">&gt; 500 ms</td></tr>
+      </tbody>
+    </table>
+
+    <h3>Chrome DevTools — LCP Element Verification</h3>
+    <p>This test confirms the poster image, not the video, is registered as your LCP element.</p>
+
+    <div class="code-block">
+      <div class="code-header"><span class="lang">devtools</span><span class="filename">step-by-step protocol</span></div>
+      <pre><span class="c">1. Open Chrome on the homepage (not incognito — extensions are irrelevant here)</span>
+<span class="c">2. Open DevTools: F12 or Cmd+Option+I on Mac</span>
+<span class="c">3. Go to the Performance tab</span>
+<span class="c">4. Click the circular Record button (top left of the panel)</span>
+<span class="c">5. Hard-reload the page: Ctrl+Shift+R (Windows) or Cmd+Shift+R (Mac)</span>
+<span class="c">6. Wait for the video to start playing (~3 seconds)</span>
+<span class="c">7. Click Stop in the Performance panel</span>
+
+<span class="c">─── CHECKING LCP ─────────────────────────────────────────────</span>
+<span class="c">8.  In the Timings row, look for the "LCP" marker (green diamond)</span>
+<span class="c">9.  Click the LCP marker — a tooltip appears</span>
+<span class="c">10. The tooltip shows the LCP element. It must read:</span>
+    <span class="s">Element: &lt;img&gt;  (the poster image)
+    URL: /assets/images/hero-poster.webp</span>
+
+<span class="c">    ❌ FAIL if it reads: Element: &lt;video&gt;</span>
+<span class="c">       This means the preload is not firing. Debug Section 06.</span>
+
+<span class="c">─── CHECKING CLS ─────────────────────────────────────────────</span>
+<span class="c">11. In the Experience row (below Timings), look for red blocks</span>
+<span class="c">    labelled "Layout Shift"</span>
+<span class="c">12. There must be no Layout Shift events caused by the video</span>
+<span class="c">    container loading or resizing.</span>
+<span class="c">    ❌ FAIL if a Layout Shift event is triggered in the first</span>
+<span class="c">       3 seconds of page load near the hero section.</span>
+
+<span class="c">─── CHECKING VIDEO SOURCE SELECTION ──────────────────────────</span>
+<span class="c">13. Go to the Network tab</span>
+<span class="c">14. Filter by "Media"</span>
+<span class="c">15. Reload the page</span>
+<span class="c">16. Confirm only one video file is requested per page load:</span>
+<span class="c">    - On desktop: hero-desktop.webm (or .mp4 if WebM not supported)</span>
+<span class="c">    - On mobile: hero-mobile.webm (or .mp4 if WebM not supported)</span>
+<span class="c">    ❌ FAIL if both desktop and mobile files are requested,</span>
+<span class="c">       or if no video file is requested (JS not running).</span></pre>
+    </div>
+
+    <h3>Post-Launch Monitoring (28 days)</h3>
+    <table class="data-table">
+      <thead><tr><th>Where</th><th>What to check</th><th>Escalate if</th></tr></thead>
+      <tbody>
+        <tr><td>Search Console → Core Web Vitals</td><td>Mobile LCP, CLS, INP</td><td>Any URLs appear in "Poor" category</td></tr>
+        <tr><td>GA4 → Engagement</td><td>Engagement rate on homepage</td><td>Drops more than 5 points vs baseline</td></tr>
+        <tr><td>PageSpeed Insights</td><td>Mobile score after field data populates</td><td>LCP exceeds 2.5 s in field data</td></tr>
+        <tr><td>GSC → Performance</td><td>Impressions + CTR for top local queries</td><td>Top 5 local queries drop 2+ positions over 14 days</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="doc-footer">
+    <span>Homepage Brand Video — Developer Brief</span>
+    <span>SEO-grounded · Validated against web.dev, MDN, Google Search Central · May 2026</span>
+  </div>
+
+</div>
+</body>
+</html>
